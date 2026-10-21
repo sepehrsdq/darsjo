@@ -1,0 +1,13 @@
+# local artifacts
+*.pyc
+__pycache__/
+*.sqlite3
+*.log
+node_modules/
+.next/
+.env
+*.pem
+*.key
+media/
+uploads/
+.DS_Store
