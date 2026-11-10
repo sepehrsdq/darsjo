@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>درس‌جو — پیش‌نمایش محیط</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #2dd4bf;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Vazirmatn, "Segoe UI", Tahoma, sans-serif;
+    line-height: 1.8;
+    padding: 48px 20px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 56px; }
+  header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+  header h1 span { color: var(--accent); }
+  header p { color: var(--muted); max-width: 640px; margin: 0 auto; }
+  section { margin-bottom: 64px; }
+  section h2 {
+    font-size: 1.35rem;
+    margin-bottom: 6px;
+    padding-inline-start: 14px;
+    border-inline-start: 4px solid var(--accent);
+  }
+  section p.desc { color: var(--muted); margin-bottom: 18px; padding-inline-start: 18px; }
+  figure { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid #334155; }
+  figure img { width: 100%; display: block; }
+  figcaption {
+    position: absolute; bottom: 0; inset-inline: 0;
+    background: linear-gradient(transparent, rgba(15, 23, 42, .92));
+    padding: 28px 18px 12px;
+    font-size: .9rem; color: var(--text);
+  }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 72px; }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>درس‌<span>جو</span></h1>
+    <p>سامانهٔ کلاس آنلاین مدرسه: جلسات تصویری روی BigBlueButton، مدیریت فایل معلم‌ها و صفحهٔ ورود مهمان — همهٔ تصاویر با دادهٔ آزمایشی گرفته شده‌اند.</p>
+  </header>
+
+  <section>
+    <h2>داشبورد مدیر</h2>
+    <p class="desc">نمای کلی مدرسه: دانش‌آموزان، معلم‌ها، جلسات در حال برگزاری و ضبط‌ها.</p>
+    <figure>
+      <img src="screenshots/dashboard.png" alt="داشبورد مدیر" loading="lazy">
+      <figcaption>داشبورد مدیر — نمای کلی مدرسه</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>کلاس‌ها و درس‌ها</h2>
+    <p class="desc">مدیریت کلاس‌های سال تحصیلی، درس‌های هر کلاس و معلم هر درس.</p>
+    <figure>
+      <img src="screenshots/classes.png" alt="کلاس‌ها و درس‌ها" loading="lazy">
+      <figcaption>فهرست کلاس‌ها با وضعیت «در حال برگزاری»</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>صفحهٔ درس و جلسه‌ها</h2>
+    <p class="desc">هر جلسه یک شماره دارد؛ لینک ثابت کلاس، جلسهٔ در حال برگزاری و ضبط جلسه‌های قبلی همه این‌جاست.</p>
+    <figure>
+      <img src="screenshots/lesson.png" alt="صفحهٔ درس" loading="lazy">
+      <figcaption>صفحهٔ درس — جلسه‌های شماره‌دار و ضبط‌ها</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>ورود مهمان</h2>
+    <p class="desc">دانش‌آموز با لینک ثابت و بدون حساب کاربری وارد می‌شود؛ تا شروع کلاس در حالت انتظار می‌ماند.</p>
+    <figure>
+      <img src="screenshots/guest-join.png" alt="ورود مهمان" loading="lazy">
+      <figcaption>صفحهٔ ورود مهمان با کپچای کشیدنی</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>کاربرها و گزارش فعالیت</h2>
+    <p class="desc">مدیریت کاربرها، ایمپورت گروهی با اکسل و گزارش فعالیت با ردیف‌های ۷ روزه.</p>
+    <div class="grid">
+      <figure>
+        <img src="screenshots/users.png" alt="کاربرها" loading="lazy">
+        <figcaption>مدیریت کاربرها</figcaption>
+      </figure>
+      <figure>
+        <img src="screenshots/audit.png" alt="گزارش فعالیت" loading="lazy">
+        <figcaption>گزارش فعالیت سامانه</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>پنل فایل معلم‌ها</h2>
+    <p class="desc">پنل جدا با PostgreSQL، کپچای کشیدنی و ایزولاسیون کامل پوشهٔ هر معلم؛ همگام با حساب LMS.</p>
+    <figure>
+      <img src="screenshots/portal-login.png" alt="پنل فایل" loading="lazy">
+      <figcaption>ورود به پنل فایل مدرسه</figcaption>
+    </figure>
+  </section>
+
+  <footer>
+    <p>این پیش‌نمایش بخشی از ریپوی <a href="https://github.com/sepehrsdq/darsjo">درس‌جو</a> است — برای اجرای واقعی به README مراجعه کنید.</p>
+  </footer>
+
+</div>
+</body>
+</html>
