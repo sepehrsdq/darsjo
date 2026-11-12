@@ -32,7 +32,12 @@ fi
 [ -n "$PGPASS" ] || PGPASS=$(openssl rand -hex 24)
 [ -n "$DJANGO_KEY" ] || DJANGO_KEY=$(openssl rand -hex 48)
 # The school asked for one shared admin password across both systems.
-ADMIN_PASS="ChangeMe#Admin"
+# Read it from the environment; otherwise generate a strong one and print it once.
+ADMIN_PASS="${ADMIN_PASSWORD:-}"
+if [ -z "$ADMIN_PASS" ]; then
+  ADMIN_PASS=$(openssl rand -base64 18 | tr -d '\n')
+  GENERATED_ADMIN_PASS=1
+fi
 BBB_SECRET=$(grep -E '^securitySalt=' /etc/bigbluebutton/bbb-web.properties | cut -d= -f2)
 
 # File panel database (same PostgreSQL server, separate database).
@@ -150,6 +155,9 @@ for u in User.objects.order_by('role','username'):
   echo "Teachers and students: create them from «کاربرها» or «افزودن گروهی»."
 } > /root/lms-admin-credentials.txt
 chmod 600 /root/lms-admin-credentials.txt
+if [ "${GENERATED_ADMIN_PASS:-0}" = "1" ]; then
+  log "Generated admin password saved in /root/lms-admin-credentials.txt; change it after the first login."
+fi
 
 log "6) nginx vhost"
 cp "$APP_DIR/deploy/nginx-meet.conf" /etc/nginx/sites-available/meet-ssl.conf

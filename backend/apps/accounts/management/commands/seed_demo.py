@@ -3,7 +3,8 @@
 import datetime
 import random
 
-from django.core.management.base import BaseCommand
+from django.conf import settings
+from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 
 from apps.academic.models import ClassRoom, Enrollment, Offering, ScheduleSlot, Subject
@@ -29,9 +30,19 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("--students", type=int, default=24, help="students per class")
+        parser.add_argument(
+            "--force",
+            action="store_true",
+            help="allow seeding outside DEBUG (accounts get known passwords)",
+        )
 
     @transaction.atomic
     def handle(self, *args, **options):
+        if not settings.DEBUG and not options["force"]:
+            raise CommandError(
+                "seed_demo creates accounts with known passwords. Run it locally "
+                "or pass --force if this is a throwaway demo server."
+            )
         random.seed(1405)
         per_class = options["students"]
 

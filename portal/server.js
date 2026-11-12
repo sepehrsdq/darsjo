@@ -757,7 +757,10 @@ async function bootstrapAdmin() {
   const { rows } = await query("SELECT count(*)::int AS c FROM users WHERE role = 'admin'");
   if (rows[0].c === 0) {
     const username = String(process.env.ADMIN_USERNAME || 'admin').toLowerCase();
-    const password = process.env.ADMIN_PASSWORD || 'ChangeMe#Admin';
+    const password = process.env.ADMIN_PASSWORD;
+    if (!password) {
+      throw new Error('ADMIN_PASSWORD must be set before the first admin account is created');
+    }
     const displayName = process.env.ADMIN_DISPLAY_NAME || 'مدیر سامانه';
     await query(
       `INSERT INTO users (username, display_name, role, password_hash, quota_bytes, avatar_color)
